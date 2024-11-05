@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask en Vercel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a mi Proyecto Flask en Vercel</h1>
+        <p>Haz clic en el botón para ver los datos de la API.</p>
+    </header>
+    
+    <main>
+        <button id="loadDataBtn">Cargar Datos</button>
+        <div id="dataContainer"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Proyecto Flask en Vercel</p>
+    </footer>
+
+    <script>
+        document.getElementById('loadDataBtn').addEventListener('click', async () => {
+            const response = await fetch('/api/data');
+            const data = await response.json();
+            document.getElementById('dataContainer').innerHTML = `<p>${data.message}</p>`;
+        });
+    </script>
+</body>
+</html>
